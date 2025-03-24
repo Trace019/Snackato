@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "1psc McChicken",
+        "price": 92.00,
+        "image": "food menu/mchicken.jpeg"
+    },
+    {
+        "id": 2,
+        "name": "2psc McChicken",
+        "price": 180.00,
+        "image": "food menu/mchicken.jpeg"
+    },
+    {
+        "id": 3,
+        "name": "6psc Chicken McNuggets",
+        "price": 110.00,
+        "image": "food menu/mcnuggets.jpeg"
+    },
+    {
+        "id": 4,
+        "name": "BFF Fries",
+        "price": 174.00,
+        "image": "food menu/bff-fries.jpeg"
+    }
+]

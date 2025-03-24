@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Palabok",
+        "price": 134.00,
+        "image": "food menu/palabok.jpeg"
+    },
+    {
+        "id": 2,
+        "name": "Jolly Spaghetti",
+        "price": 86.00,
+        "image": "food menu/jolly-spagetti.jpeg"
+    },
+    {
+        "id": 3,
+        "name": "2psc Burger Steak",
+        "price": 135.00,
+        "image": "food menu/burger-steak.jpeg"
+    },
+    {
+        "id": 4,
+        "name": "2psc Chickenjoy",
+        "price": 186.00,
+        "image": "food menu/chickenjoy.jpeg"
+    }
+]

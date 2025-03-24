@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Fameous Bowl",
+        "price": 75.00,
+        "image": "food menu/fameous-bowl.jpeg"
+    },
+    {
+        "id": 2,
+        "name": "1psc Full Loaded Meal",
+        "price": 210.00,
+        "image": "food menu/kfc-full-loaded.jpeg"
+    },
+    {
+        "id": 3,
+        "name": "Flavor Shots",
+        "price": 75.00,
+        "image": "food menu/flavor-shots.jpeg"
+    },
+    {
+        "id": 4,
+        "name": "Ala King Zinger Steak",
+        "price": 130.00,
+        "image": "food menu/zinger-steak.jpeg"
+    }
+]

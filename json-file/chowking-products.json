@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Wok Sarap Fried Rice w. Cola-cola",
+        "price": 139.00,
+        "image": "food menu/wok-sarap-coke.jpeg"
+    },
+    {
+        "id": 2,
+        "name": "Wok Sarap Fried Rice",
+        "price": 116.00,
+        "image": "food menu/wok-sarap.jpeg"
+    },
+    {
+        "id": 3,
+        "name": "Spicy Wok Sarap Chao Fan",
+        "price": 139.00,
+        "image": "food menu/spicy-wok-sarap.jpeg"
+    },
+    {
+        "id": 4,
+        "name": "Fried Chicken, Lauriat Served",
+        "price": 246.00,
+        "image": "food menu/lauriat-served-chicken.jpeg"
+    }
+]
