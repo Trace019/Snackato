@@ -1,0 +1,471 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&family=Cherry+Bomb+One&family=Fredoka:wght@300..700&family=Gamja+Flower&family=Hachi+Maru+Pop&family=Klee+One&family=Outfit:wght@100..900&family=Patrick+Hand+SC&family=Sigmar&family=Titan+One&display=swap');
+
+/* * Fonts Available
+    ? Big Shoulders Display
+    ? Fredoka One
+    ! Outfit [Main F]
+    ? Patrick Hand SC
+    ? Sigmar [Bold Text]
+    ? Titan One
+    % Gamja Flower [Korean]
+    % Hachi Maru Pop [Japanese]
+    % Klee One [Japanese]
+*/
+
+:root { /* so i don't have to swuitch shit*/
+  --base-color: #fff;
+  --background-color: white;
+  --menubar-color: #3d4d40;
+  --text-color: white;
+  --text-color2: white;
+  --secondarytext-color: ;
+  --acccent-color: #68D17E;
+  --accent2-color: transparent;
+  --hover-color: #373D2D;
+  --hover-color2: #89AC46;
+  
+  font-size: 13px;
+  --transition-speed: .2s;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Outfit", sans-serif;
+
+}
+
+/* Manu Bar/Navigation Bar for login/signup/home */
+.menubar{
+  background-color: var(--accent2-color);
+  border-bottom: 2px solid #1f243d;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1; 
+}
+
+.menu-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+  min-height: 60px;
+}
+
+.logo-log {
+  font-family: "Titan One", sans-serif;
+  font-size: 32px;
+}
+
+main { /* ! For Background*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(background/background.jpeg);
+      background-size: cover;
+      background-position: center;
+    
+}
+
+.accwrapper { /* TODO for php later*/
+  width: 420px;
+  background: transparent;
+  color: var(--base-color);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  padding: 25px 35px 50px 35px;
+  border: 2px solid white;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.accwrapper h1 {
+  font: 36px;
+  text-align: center;
+}
+
+.accwrapper .input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 15px 0;
+}
+
+.input-box input  {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, .2);
+  border-radius: 45px;
+  font-size: 18px;
+  color: var(--base-color);
+  padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+  color: var(--base-color);
+}
+
+.input-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: white;
+}
+
+.accwrapper .remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin: 15px 0 15px;
+}
+
+.remember-forgot input label {
+  accent-color: var(--base-color);
+  margin-right: 5px;
+
+}
+
+.remember-forgot a {
+  color: var(--base-color);
+  text-decoration: none;
+  transition: .21s ease-in-out;
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--base-color);
+  }
+}
+
+.accwrapper .logbtn {
+  width: 100%;
+  height: 50px;
+  background: var(--base-color);
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+  font-size: 18px;
+  color: black;
+  cursor: pointer; 
+  transition: .2s ease;
+
+  &:hover {
+    background-color: var(--hover2-color);
+  }
+}
+
+.accwrapper .reglink {
+  text-align: center;
+  font-size: 15px;
+  margin: 20px 0 15px;
+}
+
+.reglink p a {
+  text-decoration: none;
+  color: white;
+  transition: .21s ease-in-out;
+
+  &:hover {
+    color: var(--hover-color);
+  }
+}
+
+/* ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+/** NAVIGATION BAR */
+
+
+.main-content {
+  margin-left: 5rem;
+}
+
+.navibar {
+  position: fixed;
+  background-color: var(--menubar-color);
+  z-index: 1000;
+  transition: 200ms ease;
+}
+
+.navibar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+
+.navibar-item {
+  width: 100%;
+  
+  a {
+    text-decoration: none;
+    list-style: none;
+  }
+}
+
+.navibar-item {
+  width: 100%;
+}
+
+.navibar-item:last-child {
+  margin-top: auto;
+}
+
+.navibar-link {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  color: inherit;
+  color: var(--text-color2);
+  text-decoration: none;
+  filter: grayscale(100%) opacity(0.7);
+  transition: var(--transition-speed);
+}
+
+.navibar-link path {
+  fill: var(--text-color2);
+  transition: var(--transition-speed);
+}
+
+.navibar-link:hover {
+  background: var(--hover-color);
+  color: var(--hover-color2);
+  fill: var(--hover-color2);
+  filter: grayscale(0%) opacity(1);
+}
+
+.link-text {
+  display: none;
+  margin-left: 1rem;
+}
+
+
+.navibar-link svg {
+  width: 2rem;
+  min-width: 2rem;
+  margin: 0 1.5rem;
+}
+
+.logo {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  background: var(--menubar-color);
+  font-size: 1.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.logo svg {
+  transform: rotate(0deg);
+  transition: var(--transition-speed);
+  position: absolute;
+}
+
+.logo-text {
+  position: absolute;
+  left: 4rem;
+}
+
+
+.navibar:hover .logo svg {
+  transform: rotate(180deg);
+}
+
+body {
+  background: var(--background-color);
+}
+
+
+
+/* ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+/** MCDONALDS OR ANY RESTAURANT HONESTLY BAR */
+
+
+.banner-home {
+  position: relative;
+  padding: 1rem;
+  width: 100%;
+  height: 200px;
+}
+
+.bannertext {
+  position: absolute;
+  top: 82%;
+  transform: translate(0%, -0%);
+  margin-left: 2rem;
+  color: var(--base-color);
+  font-size: 1.7rem;
+}
+
+.banner {
+  width: 100%;
+  height: 400px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+  border-radius: 20px;
+}
+
+.outliner-header {
+  margin: 18rem 2.5rem 0 ;
+  position: relative;
+  font-family: "Titan One", sans-serif;
+  font-weight: 100;
+
+  &::after {
+    content: '';
+    background: var(--hover-color2);
+    height: 3px;
+    width: 5rem;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: .25s ease-in-out;
+  }
+}
+
+.outliner-header:hover::after {
+  width: 12rem;
+}
+
+.pick-a-restaurant {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  grid-gap: 10px;
+  gap: 20px;
+}
+
+.restaurant-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 20%;
+  margin-bottom: 20px;
+}
+
+.card-content {
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  height: 200px;
+  background: var(--base-color);
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+  padding: 2rem;
+  transition: .25s ease-in-out;
+
+  &:hover {
+    border: 3px solid var(--hover-color2);
+    transform: translateY(-10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .4);
+  }
+}
+
+#soon:hover {
+  border: 3px solid rgba(255, 0, 0, 1);
+  cursor: not-allowed;
+
+}
+
+.card-content a {
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+}
+.card-title {
+  font-family: "Patrick Hand SC", sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+/* ! aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+/** MENU ITEMS HERE */
+
+
+
+/*! small screens*/
+@media only screen and (max-width: 600px) {
+  .navibar {
+    bottom: 0;
+    width: 100vw;
+    height: 5rem;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .navibar-list {
+    flex-direction: row;
+  }
+
+  .navibar-link {
+    justify-content: center;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .pick-a-restaurant {
+    margin-left: 2rem;
+  }
+
+  .outliner-header {
+    margin-top: 7rem;
+  }
+
+  .outliner-header::after {
+    display: none;
+   }
+
+   .banner {
+    height: 250px;
+   }
+
+   .bannertext {
+    font-size: 1rem;
+    top: 55%;
+   }
+   
+}
+/*! large screens*/
+@media only screen and (min-width: 600px) {
+  .navibar {
+    top: 0;
+    width: 5rem;
+    height: 100vh;
+  }
+
+  .navibar:hover {
+    width: 16rem;
+  }
+
+  .navibar:hover .link-text {
+    display: inline;
+    transition: opacity var(--transition-speed);
+  }
+
+  .pick-a-restaurant {
+    justify-content: center;
+   }
+
+   .outliner-header {
+    text-align: center;
+   }
+
+   
+
+}
