@@ -31,6 +31,7 @@ const signupbtn = document.getElementById('signupbtn');
 signupbtn.addEventListener("click", function (event) {
     event.preventDefault(); // Prevents form submission
 
+    const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     
@@ -42,6 +43,7 @@ signupbtn.addEventListener("click", function (event) {
 
         // Store username in Firestore
         await setDoc(doc(db, "users", user.uid), {
+            username: username,
             email: email,
             password: password
         });
