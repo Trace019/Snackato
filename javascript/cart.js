@@ -19,16 +19,19 @@ const addDataToHTML = () => {
     listProductHTML.innerHTML = '';
     if(productList.length > 0){
         productList.forEach( product => {
+            // FOR MULTIPLE ITEMS NEEDED TO BE ADDED
             let newProduct = document.createElement('div');
             newProduct.classList.add('food-item');
             newProduct.dataset.id = product.id;
-            newProduct.innerHTML = `                        
+            newProduct.innerHTML = 
+            `
             <img src="${product.image}" alt="">
-                <h2>${product.name}</h2>
+            <h3 id="product-name">${product.name}</h3>
+            
+            <div class="product-desc">
                 <div class="item-price">₱${product.price}</div>
-                <button class="add-cart">
-                    Add To Cart
-                </button>
+            <button class="add-cart"><i class='bx bxs-shopping-bag'></i></button>
+            </div>
                 `;
                 listProductHTML.appendChild(newProduct);
         })
@@ -36,8 +39,8 @@ const addDataToHTML = () => {
 }
 listProductHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
-    if(positionClick.classList.contains('add-cart')){
-        let product_id = positionClick.parentElement.dataset.id;
+    if(positionClick.classList.contains('product-desc') || positionClick.classList.contains('add-cart') || positionClick.classList.contains('bx')){
+        let product_id = positionClick.closest('.food-item')?.dataset.id;
         addToCart(product_id);
     }
 })
@@ -86,9 +89,9 @@ const addCartToHTML = () => {
                                 ₱${info.price * cart.quantity}
                             </div>
                             <div class="quantity">
-                                <span class="minus"><</span>
+                                <span class="minus"><<</span>
                                 <span>${cart.quantity}</span>
-                                <span class="plus">></span>
+                                <span class="plus">>></span>
                             </div>
                         </div>
                         `;
