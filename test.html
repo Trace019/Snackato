@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Snackato!</title>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <script src="https://kit.fontawesome.com/489c5b8ea3.js" crossorigin="anonymous"></script>
+
+        <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&family=Cherry+Bomb+One&family=Fredoka:wght@300..700&family=Gamja+Flower&family=Hachi+Maru+Pop&family=Klee+One&family=Outfit:wght@100..900&family=Patrick+Hand+SC&family=Sigmar&family=Titan+One&display=swap');
+
+            body {
+                font-family: 'Patrick Hand SC', sans-serif;
+                background-color: #f0f0f0;
+                margin: 0;
+                padding: 0;
+            }
+            .food-item {
+                max-width: 10em;
+                max-height: 15em;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #f8f8f8;
+                border-radius: 10px;
+                padding: 20px;
+                margin: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.15s ease;
+
+                &:hover {
+                    background-color: rgb(245, 244, 252);
+                    
+                }
+            }
+            .food-item img {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+            }
+
+            .food-item h3 {
+                font-size: 1.2em;
+                margin: .5em 0;
+                text-align: center;
+            }
+
+            .food-item .product-desc {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+            }
+            .food-item .item-price {
+                font-size: 1.1em;
+                font-weight: bold;
+                color: #6ab86c;
+            }
+            .food-item .product-desc button {
+                background-color: #3ABEFF;
+                color: #f5f5f5;
+                border: none;
+                padding: .8em;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: .85em;
+            }
+        </style>
+
+
+    </head>
+    <body>
+        <div class="food-item">
+            <img src="food menu/mchicken.jpeg" alt="Food Item" class="food-image">
+            <h3 id="product-name">Wok Sarap w. Coke</h3>
+
+            <div class="product-desc">
+                <div class="item-price">₱150</div>
+            <button class="add-cart"><i class='bx bxs-shopping-bag'></i></button>
+            </div>
+        </div>
+
+
+
+        <div class="food-item-two">
+        <img src="food menu/bff-fries.jpeg" alt="fries">
+                <h2>${product.name}</h2>
+                
+                <div class="item-price">₱${product.price}</div>
+                <button class="add-cart">
+                    Add To Cart
+                </button>
+        </div>
+    </body>
+</html>
