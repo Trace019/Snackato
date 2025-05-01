@@ -9,7 +9,7 @@
         "id": 2,
         "name": "2psc McChicken",
         "price": 180.00,
-        "image": "food menu/mchicken.jpeg"
+        "image": "food menu/mchicken-two.jpeg"
     },
     {
         "id": 3,
@@ -21,6 +21,30 @@
         "id": 4,
         "name": "BFF Fries",
         "price": 174.00,
+        "image": "food menu/bff-fries.jpeg"
+    },
+    {
+        "id": 5,
+        "name": "Cheeseburger",
+        "price": null,
+        "image": "food menu/mchicken.jpeg"
+    },
+    {
+        "id": 6,
+        "name": "Oreo McFlurry",
+        "price": null,
+        "image": "food menu/mchicken-two.jpeg"
+    },
+    {
+        "id": 7,
+        "name": "Happy Meal",
+        "price": null,
+        "image": "food menu/mcnuggets.jpeg"
+    },
+    {
+        "id": 8,
+        "name": "3pcs Chicken Meal",
+        "price": null,
         "image": "food menu/bff-fries.jpeg"
     }
 ]
