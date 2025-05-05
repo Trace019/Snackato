@@ -46,5 +46,77 @@
         "name": "3pcs Chicken Meal",
         "price": null,
         "image": "food menu/bff-fries.jpeg"
+    },
+    {
+        "id": 9,
+        "name": "Palabok",
+        "price": 134.00,
+        "image": "food menu/palabok.jpeg"
+    },
+    {
+        "id": 10,
+        "name": "Jolly Spaghetti",
+        "price": 86.00,
+        "image": "food menu/jolly-spagetti.jpeg"
+    },
+    {
+        "id": 11,
+        "name": "2psc Burger Steak",
+        "price": 135.00,
+        "image": "food menu/burger-steak.jpeg"
+    },
+    {
+        "id": 12,
+        "name": "2psc Chickenjoy",
+        "price": 186.00,
+        "image": "food menu/chickenjoy.jpeg"
+    },
+    {
+        "id": 13,
+        "name": "Wok Sarap Fried Rice w. Cola-cola",
+        "price": 139.00,
+        "image": "food menu/wok-sarap-coke.jpeg"
+    },
+    {
+        "id": 14,
+        "name": "Wok Sarap Fried Rice",
+        "price": 116.00,
+        "image": "food menu/wok-sarap.jpeg"
+    },
+    {
+        "id": 15,
+        "name": "Spicy Wok Sarap Chao Fan",
+        "price": 139.00,
+        "image": "food menu/spicy-wok-sarap.jpeg"
+    },
+    {
+        "id": 16,
+        "name": "Fried Chicken, Lauriat Served",
+        "price": 246.00,
+        "image": "food menu/lauriat-served-chicken.jpeg"
+    },
+    {
+        "id": 17,
+        "name": "Fameous Bowl",
+        "price": 75.00,
+        "image": "food menu/fameous-bowl.jpeg"
+    },
+    {
+        "id": 18,
+        "name": "1psc Full Loaded Meal",
+        "price": 210.00,
+        "image": "food menu/kfc-full-loaded.jpeg"
+    },
+    {
+        "id": 19,
+        "name": "Flavor Shots",
+        "price": 75.00,
+        "image": "food menu/flavor-shots.jpeg"
+    },
+    {
+        "id": 20,
+        "name": "Ala King Zinger Steak",
+        "price": 130.00,
+        "image": "food menu/zinger-steak.jpeg"
     }
 ]
