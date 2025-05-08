@@ -26,26 +26,26 @@
     {
         "id": 5,
         "name": "Cheeseburger",
-        "price": null,
-        "image": "food menu/mchicken.jpeg"
+        "price": 87,
+        "image": "food menu/cheeseburger.jpeg"
     },
     {
         "id": 6,
         "name": "Oreo McFlurry",
-        "price": null,
-        "image": "food menu/mchicken-two.jpeg"
+        "price": 42,
+        "image": "food menu/oreo-mcflurry.jpeg"
     },
     {
         "id": 7,
         "name": "Happy Meal",
-        "price": null,
-        "image": "food menu/mcnuggets.jpeg"
+        "price": 169,
+        "image": "food menu/happymeal.jpeg"
     },
     {
         "id": 8,
         "name": "3pcs Chicken Meal",
-        "price": null,
-        "image": "food menu/bff-fries.jpeg"
+        "price": 275,
+        "image": "food menu/3psc-chicken.jpeg"
     },
     {
         "id": 9,
