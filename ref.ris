@@ -182,3 +182,118 @@ const password = document.getElementById('password').value;
   });
 
 })
+
+
+        <div class="cart-content">
+            <div class="checkout-details">
+                <h2>Billing Address</h2>
+            <div class="cart-details">
+                <input type="text" name="username" placeholder="First & Last Name" required>
+                <i class='bx bxs-info-square'></i>
+            </div>
+            <div class="cart-details">
+                <input type="text" name="username" placeholder="Email" required>
+                <i class='bx bxs-envelope'></i>
+            </div>
+            <div class="cart-details">
+                <input type="password" name="username" placeholder="Phone No." required>
+                <i class='bx bxs-phone-call'></i>
+            </div>
+            <div class="cart-details">
+                <input type="text" name="address" placeholder="Address" required>
+                <i class='bx bxs-edit-location'></i>
+            </div>
+            <div class="cart-details">
+                <input type="username" name="username" placeholder="City" required>
+                <i class='bx bxs-city' ></i>
+            </div>
+            <div class="cart-details">
+                <input type="text" name="username" placeholder="State" required>
+                <i class='bx bxs-city' ></i>
+            </div>
+            
+            <div class="cart-details">
+                <input type="text" name="username" placeholder="Zip" required>
+                <i class='bx bx-target-lock'></i>            
+            </div>
+            <button type="submit" class="order-btn" onclick="orderComplete()">Order</button>
+            </div>
+        </div>
+
+        
+.cart-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;  
+}
+
+.checkout-details {
+    width: 420px;
+    background: #373D2D;
+    color: #353535;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 25px 35px 50px 35px;
+    border: 2px solid rgb(16, 68, 33);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.checkout-details h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    color:#4d573f ;
+}
+
+.checkout-details .cart-details {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 15px 0;
+  }
+  
+.cart-details input  {
+    width: 100%;
+    height: 100%;
+    background: #4d573f;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 45px;
+    font-size: 18px;
+    color: var(--base-color);
+    padding: 20px 45px 20px 20px;
+  }
+  
+.cart-details input::placeholder {
+    color: #fffcfc;
+  }
+  
+.cart-details i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #373D2D;
+  }
+
+.checkout-details .order-btn {
+    width: 100%;
+    height: 50px;
+    background: var(--base-color);
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+    font-size: 18px;
+    color: var(--hover-color);
+    cursor: pointer; 
+    transition: .2s ease;
+  
+    &:hover {
+      background-color: #7f8d68;
+    }
+}
+  

@@ -13,11 +13,16 @@
         --hover-color2: #89AC46;
     }
 
+* {
+    scrollbar-width: none;
+}
+
 .food-selection {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     width: 900px;
+    height: 1400px;
     max-width: 90vw; /*90% of the screen ratio*/
     margin: 0 1rem;
     text-align: center;
@@ -88,6 +93,7 @@
     &:hover {
         background-color: rgb(245, 244, 252);
         transform: translateY(-5px);
+        transform: scale(1.015);
         
     }
 }
