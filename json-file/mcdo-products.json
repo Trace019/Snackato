@@ -1,19 +1,19 @@
 [
     {
         "id": 1,
-        "name": "1psc McChicken",
+        "name": "1pc McChicken",
         "price": 92.00,
         "image": "food menu/mchicken.jpeg"
     },
     {
         "id": 2,
-        "name": "2psc McChicken",
+        "name": "2pc McChicken",
         "price": 180.00,
         "image": "food menu/mchicken-two.jpeg"
     },
     {
         "id": 3,
-        "name": "6psc Chicken McNuggets",
+        "name": "6pc Chicken McNuggets",
         "price": 110.00,
         "image": "food menu/mcnuggets.jpeg"
     },
@@ -43,7 +43,7 @@
     },
     {
         "id": 8,
-        "name": "3pcs Chicken Meal",
+        "name": "3pc Chicken Meal",
         "price": 275,
         "image": "food menu/3psc-chicken.jpeg"
     },
@@ -67,7 +67,7 @@
     },
     {
         "id": 12,
-        "name": "2psc Chickenjoy",
+        "name": "2pc Chickenjoy",
         "price": 186.00,
         "image": "food menu/chickenjoy.jpeg"
     },
@@ -97,13 +97,13 @@
     },
     {
         "id": 17,
-        "name": "Fameous Bowl",
+        "name": "Famous Bowl",
         "price": 75.00,
         "image": "food menu/fameous-bowl.jpeg"
     },
     {
         "id": 18,
-        "name": "1psc Full Loaded Meal",
+        "name": "1pc Full Loaded Meal",
         "price": 210.00,
         "image": "food menu/kfc-full-loaded.jpeg"
     },
