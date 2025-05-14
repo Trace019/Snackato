@@ -36,17 +36,34 @@ onAuthStateChanged(auth, async (user) => {
                 const userData = userDoc.data();
                 // Update UI elements if they exist on the page
                 const userDisplay = document.getElementById("userDisplay");
+                const phoneDisplay = document.getElementById("phoneDisplay");
+                const addressDisplay = document.getElementById("addressDisplay");
                 const emailDisplay = document.getElementById("emailDisplay");
+                const passwordDisplay = document.getElementById("passwordDisplay");
+                const creationDisplay = document.getElementById("creationDisplay");
                 
                 if (userDisplay) {
                     userDisplay.textContent = userData.username || user.email.split('@')[0];
                 }
+                if (phoneDisplay) {
+                    phoneDisplay.textContent = userData.phone || "Not provided";
+                }
+                if (addressDisplay) {
+                    addressDisplay.textContent = userData.address || "Not provided";
+                }
                 if (emailDisplay) {
                     emailDisplay.textContent = user.email;
                 }
+                if (passwordDisplay) {
+                    passwordDisplay.textContent = user.password || "********"; // Mask password
+                }
+                if (creationDisplay) {
+                    const creationDate = new Date(userData.createdAt.seconds * 1000);
+                    creationDisplay.textContent = creationDate.toLocaleDateString();
+                }
             }
         } catch (error) {
-            console.error("Error getting user document:", error);
+            console.error("Error Displaying User Data:", error);
         }
     } else {
         // User is signed out
@@ -55,33 +72,3 @@ onAuthStateChanged(auth, async (user) => {
         }
     }
 });
-
-// Signup functionality
-const signupbtn = document.getElementById('signupbtn');
-if (signupbtn) {
-    signupbtn.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        const username = document.getElementById('username').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
-        createUserWithEmailAndPassword(auth, email, password)
-        .then(async (userCredential) => {
-            const user = userCredential.user;
-
-            // Store username in Firestore
-            await setDoc(doc(db, "users", user.uid), {
-                username: username,
-                email: email,
-                password: password // Note: Storing passwords in Firestore is not recommended
-            });
-
-            alert("Account created successfully!");
-            window.location.href = "index.html";
-        })
-        .catch((error) => {
-            alert("Error: " + error.message);
-        });
-    });
-}

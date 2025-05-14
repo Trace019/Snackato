@@ -32,8 +32,11 @@ signupbtn.addEventListener("click", function (event) {
     event.preventDefault(); // Prevents form submission
 
     const username = document.getElementById('username').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    const createdAt = new Date();
     
 
     // Use Firebase v9+ method
@@ -44,8 +47,11 @@ signupbtn.addEventListener("click", function (event) {
         // Store username in Firestore
         await setDoc(doc(db, "users", user.uid), {
             username: username,
+            phone: phone,
+            address: address,
             email: email,
-            password: password
+            password: password,
+            createdAt: new Date()
         });
 
         alert("Account created successfully!");
