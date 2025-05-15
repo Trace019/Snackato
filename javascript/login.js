@@ -1,8 +1,16 @@
-// Import the functions you need from the SDKs you need
+// never knew shift + alt + f would make this look cleaner lmao
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
-import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
+import {
+  getFirestore,
+  setDoc,
+  doc,
+} from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -12,7 +20,7 @@ const firebaseConfig = {
   storageBucket: "snackato-cde4b.firebasestorage.app",
   messagingSenderId: "860864907466",
   appId: "1:860864907466:web:726cecd04cb504d03c0c33",
-  measurementId: "G-1P9QRKJ0SX"
+  measurementId: "G-1P9QRKJ0SX",
 };
 
 // Initialize Firebase
@@ -22,26 +30,20 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Login functionality
-const loginbtn = document.getElementById('loginbtn');
+const loginbtn = document.getElementById("loginbtn");
 
-loginbtn.addEventListener("click", function(event) {
-    event.preventDefault();
+loginbtn.addEventListener("click", function (event) {
+  event.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        // Signed in successfully
-        const user = userCredential.user;
-        alert("Logged in successfully!");
-        window.location.href = "homepage.html";
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert("Error: " + errorMessage);
-    });
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+    // Signed in successfully
+    const user = userCredential.user;
+    alert("Logged in Successfully!");
+    window.location.href = "homepage.html";
+  });
 });
 
 // Show Password functionality
@@ -49,13 +51,13 @@ const showhidePass = document.getElementById("showhidePass");
 const password = document.getElementById("password");
 
 function togglePassword() {
-    if (password.type === "password") {
-        password.type = "text";
-        showhidePass.classList.replace('bx-lock', 'bx-lock-open');
-    } else {
-        password.type = "password";
-        showhidePass.classList.replace('bx-lock-open', 'bx-lock');
-    }
+  if (password.type === "password") {
+    password.type = "text";
+    showhidePass.classList.replace("fa-lock", "fa-lock-open");
+  } else {
+    password.type = "password";
+    showhidePass.classList.replace("fa-lock-open", "fa-lock");
+  }
 }
 
 showhidePass.addEventListener("click", togglePassword);

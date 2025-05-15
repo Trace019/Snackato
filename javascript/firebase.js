@@ -1,14 +1,8 @@
-// Import the functions you need from the SDKs you need
+// firebase-config.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
 import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
 
-// TODO: Add SDKs for Firebase  products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBE78nMP9WzB6kJ_bQ5KTwe5rsATmMCw_4",
   authDomain: "snackato-cde4b.firebaseapp.com",
@@ -19,11 +13,11 @@ const firebaseConfig = {
   measurementId: "G-1P9QRKJ0SX"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth(app); // Correct way to get authentication
-const db = getFirestore(app); 
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+export { auth, db }; 
 
 // Select the button
 const signupbtn = document.getElementById('signupbtn');
@@ -54,11 +48,6 @@ signupbtn.addEventListener("click", function (event) {
             createdAt: new Date()
         });
 
-        alert("Account created successfully!");
-        window.location.href = "index.html"; // Redirect to login page
     })
-    .catch((error) => {
-        alert("Error: " + error.message);
-    });
 });
 ;
