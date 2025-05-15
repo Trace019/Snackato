@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&family=Cherry+Bomb+One&family=Fredoka:wght@300..700&family=Gamja+Flower&family=Hachi+Maru+Pop&family=Klee+One&family=Outfit:wght@100..900&family=Patrick+Hand+SC&family=Sigmar&family=Titan+One&display=swap');
+
+* {
+    font-family: 'Outfit', sans-serif;
+}
+
+.invoice-container {
+    margin: 0 auto;
+    margin-top: 2rem;
+    background-color: rgb(235, 235, 234);
+    width: 450px;
+    height: fit-content;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 16px;
+}
+
+.invoice-title {
+    font-family: "Titan One", cursive;
+    text-align: right;
+    font-size: 4rem;
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+    position: relative;
+}
+
+.invoice-title::before {
+    content: '';
+    background: grey;
+    height: 3px;
+    width: 16rem;
+    position: absolute;
+    top: 25px;
+    right: 150px;
+}
+
+.invoice-header {
+    margin-top: 75px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.billed-to-title, .issued-on-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.invoice-table {
+    margin-top: 100px;
+}
+
+.invoice-table table {
+    border-collapse: separate;
+    border-spacing: 15px 5px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.download-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px auto;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.download-btn:hover {
+    background-color: #45a049;
+}
+
+.error-message {
+    text-align: center;
+    padding: 50px;
+    color: #d32f2f;
+}
+
+.error-message a {
+    color: #1976d2;
+    text-decoration: none;
+}
+
+.error-message a:hover {
+    text-decoration: underline;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .invoice-container, .invoice-container * {
+        visibility: visible;
+    }
+    .invoice-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        box-shadow: none;
+    }
+    .print-btn {
+        display: none;
+    }
+}
+
+.print-btn {
+    display: block;
+    margin: 2rem auto;
+    padding: 0.75rem 1.5rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.print-btn:hover {
+    background-color: #45a049;
+}
+
+.invoice-title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+
+.invoice-header {
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #eee;
+}
+
+.invoice-table {
+    margin-top: 2rem;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.invoice-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.invoice-table th, 
+.invoice-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.invoice-table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+}
+
+.invoice-table tr:last-child td {
+    border-bottom: 2px solid #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .invoice-container {
+        padding: 1rem;
+    }
+    
+    .invoice-title {
+        font-size: 2rem;
+    }
+    
+    .invoice-header {
+        flex-direction: column;
+    }
+    
+    .issued {
+        margin-top: 1rem;
+    }
+}

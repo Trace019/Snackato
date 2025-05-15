@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snackato!</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="food-menu.css">
+    <link rel="stylesheet" href="invoice.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/489c5b8ea3.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script type="module" src="javascript/account.js"></script>
-    <script type="module" src="javascript/firebase.js"></script>
+    <script type="module" src="javascript/firebase-config.js"></script>
+    <script type="module" src="javascript/invoice.js"></script>
     <script type="module" src="javascript/checkout.js"></script>
 </head>
 
@@ -39,10 +41,19 @@
                 </a>
             </li>
 
+            <li class="navibar-item">
+                <a href="favorites.html" class="navibar-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path
+                            d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" />
+                    </svg>
+                    <span class="link-text">Favorites</span>
+                </a>
+            </li>
 
             <li class="navibar-item">
 
-                <a href="cart.html" class="navibar-link" id="activeTab">
+                <a href="cart.html" class="navibar-link">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                         <path
                             d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
@@ -52,7 +63,7 @@
             </li>
 
             <li class="navibar-item">
-                <a href="invoice.html" class="navibar-link">
+                <a href="invoice.html" class="navibar-link" id="activeTab">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
                         <path
                             d="M14 2.2C22.5-1.7 32.5-.3 39.6 5.8L80 40.4 120.4 5.8c9-7.7 22.3-7.7 31.2 0L192 40.4 232.4 5.8c9-7.7 22.3-7.7 31.2 0L304 40.4 344.4 5.8c7.1-6.1 17.1-7.5 25.6-3.6s14 12.4 14 21.8l0 464c0 9.4-5.5 17.9-14 21.8s-18.5 2.5-25.6-3.6L304 471.6l-40.4 34.6c-9 7.7-22.3 7.7-31.2 0L192 471.6l-40.4 34.6c-9 7.7-22.3 7.7-31.2 0L80 471.6 39.6 506.2c-7.1 6.1-17.1 7.5-25.6 3.6S0 497.4 0 488L0 24C0 14.6 5.5 6.1 14 2.2zM96 144c-8.8 0-16 7.2-16 16s7.2 16 16 16l192 0c8.8 0 16-7.2 16-16s-7.2-16-16-16L96 144zM80 352c0 8.8 7.2 16 16 16l192 0c8.8 0 16-7.2 16-16s-7.2-16-16-16L96 336c-8.8 0-16 7.2-16 16zM96 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l192 0c8.8 0 16-7.2 16-16s-7.2-16-16-16L96 240z" />
@@ -74,95 +85,53 @@
         </ul>
 
     </nav>
+    <div class="invoice-container">
+        <p class="invoice-title">Recipt</p>
+        <div class="invoice-content">
 
-    <div class="checkout">
-        <div class="checkoutLayout">
-            <div class="returnCart">
-                <a onclick="backToLastPage()">Return to Shopping?</a>
-                <h1>Product List</h2>
-                    <div class="list">
-
-                        <div class="item">
-
-                        </div>
-
-                    </div>
+            <div class="invoice-header">
+                <div class="billed">
+                    <p class="billed-to-title">Billed To:</p>
+                    <p class="billed-to-name"><span id="billedToName">Test Name</span></p>
+                    <p class="billed-to-address"><span id="billedToAddress">12th St. City Country</span></p>
+                    <p class="billed-to-email"><span id="billedToEmail">sampletest@gmail.com</span></p>
+                    <p class="billed-to-phone"><span id="billedToPhone">+1 234 567 890</span></p>
+                </div>
+                <div class="issued">
+                    <p class="issued-on-title">Issued On:</p>
+                    <p class="billed-to-date"><span id="billedToDate">20XX-1-01</span></p>
+                </div>
             </div>
 
-            <div class="billingAddress">
-                <h1>Billing Address</h1>
-                <div class="form">
-
-                    <div class="group">
-                        <label for="name"><i class='bx bxs-info-square'></i> Full Name</label>
-                        <input type="text" id="name" name="name" required>
-
-                    </div>
-
-                    <div class="group">
-                        <label for="name"><i class='bx bxs-phone-call'></i> Contact Info</label>
-                        <input type="text" id="address" name="address" required>
-
-                    </div>
-
-                    <div class="group">
-                        <label for="name"><i class='bx bxs-map-pin'></i> Address</label>
-                        <input type="text" id="name" name="name" required>
-
-                    </div>
-
-                    <div class="group">
-                        <label for="name">
-                            <i class='bx bx-wallet'></i> Payment Method</label>
-                        <select name="payment" id="payment">
-                            <option value="credit">N/A</option>
-                            <option value="debit">Cash On Delivery</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="return">
-
-                    <div class="row">
-                        <div class="quantity">Total Quantity</div>
-                        <div class="totalQuantity">1</div>
-                    </div>
-
-                    <div class="row">
-                        <div class="price">Total Price</div>
-                        <div class="totalPrice">100$</div>
-                    </div>
-                </div>
-                <button type="submit" class="buttonCheckout"  onclick="finishedOrder()">
-                    CHECKOUT
-                </button>
+            <div class="invoice-table">
+                <table>
+                    <tr class="top-bar">
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                    </tr>
+                    <tr class="invoice-content">
+                        <td>Product Name #1</td>
+                        <td>100$</td>
+                        <td>2</td>
+                        <td>200$</td>
+                    </tr>
+                    <tr class="invoice-total">
+                        <th>Subtotal:</th>
+                        <th></th>
+                        <th></th>
+                        <th>200$</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="invoice-footer">
+                <p>Thank you for your order!</p>
+                <p>For any questions, please contact support@snackato.com</p>
+                <p class="order-id">Order ID: <span id="orderIdDisplay">N/A</span></p>
             </div>
         </div>
-    </div>
-
-    <!-- Remove the entire script tag at the bottom and replace with: -->
-    <script type="module">
-        import { submitOrder } from './javascript/checkout.js';
-
-        // Expose functions to global scope for onclick attributes
-        window.backToLastPage = function() {
-            window.history.back();
-        };
-
-        function finishedOrder() {
-            document.querySelector(".buttonCheckout");
-            alert("Thank You.");
-            localStorage.removeItem("cart");
-            location.href = "homepage.html";
-        }
-
-        // Setup checkout button
-        document.querySelector('.buttonCheckout').addEventListener('click', async (e) => {
-            e.preventDefault();
-            await submitOrder();
-        });
-    </script>
-
+        
 </body>
 
 </html>
