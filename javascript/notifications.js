@@ -21,7 +21,7 @@ function create(type, icon, desc, title) {
     box.appendChild(element);
     setTimeout(() => {
         element.remove();
-    }, 5000);
+    }, 10000);
 }
 
 // Export the create function to be used in cart.js

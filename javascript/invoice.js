@@ -1,113 +1,171 @@
-// invoice.js
-document.addEventListener('DOMContentLoaded', () => {
-    loadOrderData();
-    setupDownloadButton();
+document.addEventListener("DOMContentLoaded", () => {
+  loadOrderData(); // fro hgetting local storage id:order
+  setupDownloadButton(); //f for the download button
+  setupDeleteButton(); // for the delete button
+  setupExitHandler(); // when you leave the invoice:parameter it automatically delete's the invoice for you.
 });
 
-// Get order ID from URL
+// Get Order ID from le URL Parameter
 const urlParams = new URLSearchParams(window.location.search);
-const orderId = urlParams.get('orderId');
+const orderId = urlParams.get("orderId");
 
 function loadOrderData() {
-    if (!orderId) {
-        console.error("No order ID found in URL");
-        return;
-    }
+  if (!orderId) {
+    console.error("No order ID found in URL");
+    displayError("No order ID found in URL.");
+    return;
+  }
 
-    try {
-        const orders = JSON.parse(localStorage.getItem('orders')) || [];
-        const orderData = orders.find(order => order.orderId === orderId);
-        
-        if (orderData) {
-            populateInvoice(orderData);
-        } else {
-            console.error("No such order found!");
-            document.querySelector('.invoice-container').innerHTML = `
-                <div class="error-message">
-                    <h2>Order Not Found</h2>
-                    <p>The requested order could not be found in your order history.</p>
-                    <a href="homepage.html">Return to Homepage</a>
-                </div>
-            `;
-        }
-    } catch (error) {
-        console.error("Error loading order:", error);
+  try {
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    console.log("Orders from localStorage:", orders);
+    console.log("Type of orders:", typeof orders);
+
+    const orderData = orders.find((order) => order.orderId === orderId);
+
+    if (orderData) {
+      populateInvoice(orderData);
+    } else {
+      console.error("No such order found!");
+      displayError(
+        "The requested order could not be found in your order history."
+      );
     }
+  } catch (error) {
+    console.error("Error loading order:", error);
+    displayError(
+      "An error occurred while loading the order, please try again later."
+    );
+  }
 }
 
 // Populate invoice with order data
 function populateInvoice(orderData) {
-    // Display order ID
-    document.getElementById('orderIdDisplay').textContent = orderData.orderId;
-    
-    // Customer Info
-    document.getElementById('billedToName').textContent = orderData.customerName;
-    document.getElementById('billedToAddress').textContent = orderData.customerAddress;
-    document.getElementById('billedToPhone').textContent = orderData.customerPhone;
-    document.getElementById('billedToDate').textContent = new Date(orderData.date).toLocaleDateString();
-    
-    // Order items
-    const tableBody = document.querySelector('.invoice-table table');
-    // Clear existing rows except header
-    while (tableBody.rows.length > 1) {
-        tableBody.deleteRow(1);
-    }
-    
-    // Add order items
-    orderData.items.forEach(item => {
-        const row = tableBody.insertRow();
-        row.innerHTML = `
+  // Display order ID
+  document.getElementById("orderIdDisplay").textContent = orderData.orderId;
+
+  // Customer Info
+  document.getElementById("billedToName").textContent = orderData.customerName;
+  document.getElementById("billedToAddress").textContent =
+    orderData.customerAddress;
+  document.getElementById("billedToPhone").textContent =
+    orderData.customerPhone;
+  document.getElementById("billedToEmail").textContent =
+    orderData.customerEmail || "N/A"; // Assuming email is optional
+  document.getElementById("billedToDate").textContent = new Date(
+    orderData.date
+  ).toLocaleDateString();
+
+  // Cart items
+  const tableBody = document.getElementById("invoiceItems");
+  // Clear existing rows
+  tableBody.innerHTML = "";
+
+  let subtotal = 0;
+  orderData.items.forEach((item) => {
+    const row = tableBody.insertRow();
+    const totalPrice = item.price * item.quantity;
+    subtotal += totalPrice;
+    row.innerHTML = `
             <td>${item.name}</td>
             <td>₱${item.price.toFixed(2)}</td>
             <td>${item.quantity}</td>
-            <td>₱${(item.price * item.quantity).toFixed(2)}</td>
+            <td>₱${totalPrice.toFixed(2)}</td>
         `;
-    });
-    
-    // Add subtotal
-    const subtotalRow = tableBody.insertRow();
-    subtotalRow.innerHTML = `
+  });
+
+  // Add subtotal
+  const subtotalRow = tableBody.insertRow();
+  subtotalRow.innerHTML = `
         <th colspan="3">Subtotal:</th>
-        <th>₱${orderData.total.toFixed(2)}</th>
+        <th>₱${subtotal.toFixed(2)}</th>
     `;
-    
-    // Add tax
-    const taxRow = tableBody.insertRow();
-    taxRow.innerHTML = `
-        <th colspan="3">Tax (12%):</th>
-        <th>₱${orderData.tax.toFixed(2)}</th>
+
+  // Add tax
+  const tax = subtotal * 0.1;
+  const taxRow = tableBody.insertRow();
+  taxRow.innerHTML = `
+        <th colspan="3">Tax (10%):</th>
+        <th>₱${tax.toFixed(2)}</th>
     `;
-    
-    // Add grand total
-    const grandTotalRow = tableBody.insertRow();
-    grandTotalRow.innerHTML = `
+
+  // Add grand total
+  const grandTotalRow = tableBody.insertRow();
+  const grandTotal = subtotal + tax;
+  grandTotalRow.innerHTML = `
         <th colspan="3">Grand Total:</th>
-        <th>₱${orderData.grandTotal.toFixed(2)}</th>
+        <th>₱${grandTotal.toFixed(2)}</th>
     `;
 }
 
-// Setup download button instead of print
-function setupDownloadButton() {
-    const downloadBtn = document.createElement('button');
-    downloadBtn.textContent = 'Download Invoice';
-    downloadBtn.classList.add('download-btn');
-    downloadBtn.addEventListener('click', downloadInvoice);
-    
-    const container = document.querySelector('.invoice-container');
-    container.appendChild(downloadBtn);
+// Display error message
+function displayError(message) {
+  document.querySelector(".invoice-container").innerHTML = `
+        <div class="error-message">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+            <h2>Error</h2>
+            <p>${message}</p>
+            <a href="homepage.html">Return to Homepage</a>
+        </div>
+    `;
 }
 
-// Download invoice as PDF
-function downloadInvoice() {
-    const invoiceElement = document.querySelector('.invoice-content');
-    const opt = {
-        margin: 10,
-        filename: `invoice_${orderId}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+// Setup download button
+function setupDownloadButton() {
+  const downloadBtn = document.createElement("button");
+  downloadBtn.textContent = "Download Invoice";
+  downloadBtn.classList.add("download-btn");
+  downloadBtn.addEventListener("click", downloadInvoice);
 
-    // Use html2pdf library (make sure to include it in your HTML)
-    html2pdf().from(invoiceElement).set(opt).save();
+  const container = document.querySelector(".invoice-container");
+  container.appendChild(downloadBtn);
+}
+function setupDeleteButton() {
+  const deleteBtn =
+    document.querySelector(".delete-invoice") ||
+    document.createElement("button");
+
+  // If button doesn't exist in HTML, create it
+  if (!document.querySelector(".delete-invoice")) {
+    deleteBtn.textContent = "Delete Invoice";
+    deleteBtn.classList.add("delete-btn");
+    const container = document.querySelector(".invoice-container");
+    container.appendChild(deleteBtn);
+  }
+
+  deleteBtn.addEventListener("click", () => {
+    removeCurrentOrder(); // Extract deletion logic to reusable function
+    window.location.href = "homepage.html";
+  });
+}
+
+function setupExitHandler() {
+  window.addEventListener("beforeunload", () => {
+    if (confirm("Clear this invoice from your history?")) {
+      removeCurrentOrder();
+    }
+  });
+}
+
+// Reusable function to remove the current order
+function removeCurrentOrder() {
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  const updatedOrders = orders.filter((order) => order.orderId !== orderId);
+  localStorage.setItem("orders", JSON.stringify(updatedOrders));
+}
+
+// Download invoice as PDF (cuz receipt)
+function downloadInvoice() {
+  const invoiceElement = document.querySelector(".invoice-content");
+  const opt = {
+    margin: 10,
+    filename: `order_receipt_from_snackato_${orderId}.pdf`,
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+  };
+
+  // Use html2pdf library
+  html2pdf().from(invoiceElement).set(opt).save();
 }

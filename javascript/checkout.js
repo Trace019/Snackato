@@ -45,7 +45,6 @@ function mergeCartWithProducts() {
         };
     });
 }
-
 // Render checkout HTML
 function addCheckoutToHTML() {
     let listCartHTML = document.querySelector('.returnCart .list');
@@ -97,7 +96,7 @@ function setupAutofill() {
 export async function submitOrder() {
     // Get form values
     const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value || document.getElementById('address').value; // Fallback to address if phone field doesn't exist
+    const phone = document.getElementById('phone').value || ''; // Ensure phone is not fallback to address
     const address = document.getElementById('address').value;
     const paymentMethod = document.getElementById('payment').value;
 
@@ -117,9 +116,15 @@ export async function submitOrder() {
         customerPhone: phone,
         customerAddress: address,
         paymentMethod: paymentMethod,
-        items: listCart,
+        items: listCart.map(item => ({
+            product_id: item.product_id,
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+            image: item.image,
+        })),
         total: total,
-        grandTotal: total * 1.12,
+        grandTotal: total * 1.12, // 12% tax
         date: new Date().toISOString()
     };
 
@@ -141,9 +146,15 @@ export async function submitOrder() {
     window.location.href = `invoice.html?orderId=${order.orderId}`;
     return true;
 }
+
+
 // Save order to localStorage
 function saveOrderToLocalStorage(order) {
-    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    // Initialize as empty array if null/undefined
+    let orders = JSON.parse(localStorage.getItem('orders'));
+    if (!orders || !Array.isArray(orders)) {
+        orders = [];
+    }
     orders.push(order);
     localStorage.setItem('orders', JSON.stringify(orders));
 }
