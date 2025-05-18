@@ -31,7 +31,7 @@
     width: 16rem;
     position: absolute;
     top: 25px;
-    right: 150px;
+    right: 170px;
 }
 
 .invoice-header {
@@ -73,6 +73,23 @@
     background-color: #45a049;
 }
 
+.delete-btn {
+    background-color: #af4c4c;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px auto;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #a04545;
+}
+
 .error-message {
     text-align: center;
     padding: 50px;
@@ -86,6 +103,12 @@
 
 .error-message a:hover {
     text-decoration: underline;
+}
+
+.error-message i {
+    fill: #d32f2f;
+    font-size: 4rem;
+    margin-bottom: 1rem;
 }
 
 @media print {

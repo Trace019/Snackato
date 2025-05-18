@@ -86,7 +86,7 @@
 
     </nav>
     <div class="invoice-container">
-        <p class="invoice-title">Recipt</p>
+        <p class="invoice-title">Receipt</p>
         <div class="invoice-content">
 
             <div class="invoice-header">
@@ -111,18 +111,21 @@
                         <th>Quantity</th>
                         <th>Total Price</th>
                     </tr>
-                    <tr class="invoice-content">
-                        <td>Product Name #1</td>
-                        <td>100$</td>
-                        <td>2</td>
-                        <td>200$</td>
-                    </tr>
-                    <tr class="invoice-total">
-                        <th>Subtotal:</th>
-                        <th></th>
-                        <th></th>
-                        <th>200$</th>
-                    </tr>
+                    <tbody id="invoiceItems">
+                        <tr class="invoice-content">
+                            <td>Product Name #1</td>
+                            <td>100$</td>
+                            <td>2</td>
+                            <td>200$</td>
+                        </tr>
+                        <tr class="invoice-total">
+                            <th>Subtotal:</th>
+                            <th></th>
+                            <th></th>
+                            <th>200$</th>
+                        </tr>
+                    </tbody>
+
                 </table>
             </div>
             <div class="invoice-footer">
@@ -131,7 +134,7 @@
                 <p class="order-id">Order ID: <span id="orderIdDisplay">N/A</span></p>
             </div>
         </div>
-        
+
 </body>
 
 </html>

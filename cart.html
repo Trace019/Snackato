@@ -96,19 +96,16 @@
                     <div class="group">
                         <label for="name"><i class='bx bxs-info-square'></i> Full Name</label>
                         <input type="text" id="name" name="name" required>
-
                     </div>
 
                     <div class="group">
-                        <label for="name"><i class='bx bxs-phone-call'></i> Contact Info</label>
+                        <label for="phone"><i class='bx bxs-phone-call'></i> Contact Info</label>
+                        <input type="text" id="phone" name="phone">
+                    </div>
+
+                    <div class="group">
+                        <label for="address"><i class='bx bxs-map-pin'></i> Address</label>
                         <input type="text" id="address" name="address" required>
-
-                    </div>
-
-                    <div class="group">
-                        <label for="name"><i class='bx bxs-map-pin'></i> Address</label>
-                        <input type="text" id="name" name="name" required>
-
                     </div>
 
                     <div class="group">
@@ -133,35 +130,18 @@
                         <div class="totalPrice">100$</div>
                     </div>
                 </div>
-                <button type="submit" class="buttonCheckout"  onclick="finishedOrder()">
+                <button type="submit" class="buttonCheckout" id="checkoutButton">
                     CHECKOUT
                 </button>
             </div>
         </div>
     </div>
-
-    <!-- Remove the entire script tag at the bottom and replace with: -->
     <script type="module">
         import { submitOrder } from './javascript/checkout.js';
-
-        // Expose functions to global scope for onclick attributes
-        window.backToLastPage = function() {
-            window.history.back();
-        };
-
-        function finishedOrder() {
-            document.querySelector(".buttonCheckout");
-            alert("Thank You.");
-            localStorage.removeItem("cart");
-            location.href = "homepage.html";
-        }
-
-        // Setup checkout button
-        document.querySelector('.buttonCheckout').addEventListener('click', async (e) => {
-            e.preventDefault();
-            await submitOrder();
-        });
+        document.getElementById('checkoutButton').addEventListener('click', submitOrder);
+        window.submitOrder = submitOrder;
     </script>
+
 
 </body>
 
