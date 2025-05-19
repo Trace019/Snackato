@@ -1,6 +1,38 @@
 import { auth, db } from "./firebase.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
-import { setDoc, doc } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+import {
+  setDoc,
+  doc,
+} from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+
+function showErrorToast(message) {
+  const existingToasts = document.querySelectorAll(".error-toast");
+  existingToasts.forEach((toast) => toast.remove());
+
+  const toast = document.createElement("div");
+  toast.className = "error-toast";
+  toast.innerHTML = `
+    <span class="toast-icon">!</span>
+    <span class="toast-message">${message}</span>
+  `;
+  document.body.appendChild(toast);
+
+  // Trigger the show the animation
+  setTimeout(() => {
+    toast.classList.add("show");
+  }, 10);
+
+  // Auto-dismiss after 3s
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => {
+      if (toast.parentNode) {
+        document.body.removeChild(toast);
+      }
+    }, 300);
+  }, 3000);
+  console.log("Showing Error Message: ", message);
+}
 
 // Show Password
 function setupPasswordToggle(passwordId, iconId) {
@@ -83,7 +115,7 @@ function checkPasswordMatch() {
   }
 }
 
-// Event listeners for real-time validation
+// Event listeners for Password-Checkers
 document.getElementById("password").addEventListener("input", (e) => {
   updateStrengthMeter(e.target.value);
   checkPasswordMatch();
@@ -110,6 +142,7 @@ signupbtn.addEventListener(
   debounce(async (event) => {
     event.preventDefault();
 
+    // For Firebase
     const username = document.getElementById("username").value.trim();
     const phone = document.getElementById("phone").value.trim();
     const address = document.getElementById("address").value.trim();
@@ -126,27 +159,39 @@ signupbtn.addEventListener(
     let isValid = true;
 
     if (!username) {
-      document.querySelector(".input-box:nth-child(1)").classList.add("error");
+      document
+        .querySelector("#username")
+        .closest(".input-box")
+        .classList.add("error");
       isValid = false;
     }
 
-    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-      document.querySelector(".input-box:nth-child(4)").classList.add("error"); // Fixed index
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document
+        .querySelector("#email")
+        .closest(".input-box")
+        .classList.add("error");
       isValid = false;
     }
 
     if (password.length < 6) {
-      document.querySelector(".input-box:nth-child(5)").classList.add("error"); // Fixed index
+      document
+        .querySelector("#password")
+        .closest(".input-box")
+        .classList.add("error");
       isValid = false;
     }
 
     if (password !== confirmPassword) {
-      document.querySelector(".input-box:nth-child(6)").classList.add("error"); // Fixed index
+      document
+        .querySelector("#confirmPassword")
+        .closest(".input-box")
+        .classList.add("error");
       isValid = false;
     }
 
     if (!isValid) {
-      showErrorToast("Please fix the form errors");
+      showErrorToast("Please, don't let it be blank.");
       return;
     }
 
@@ -168,13 +213,12 @@ signupbtn.addEventListener(
         address: address,
         email: email,
         password: password,
-        createdAt: new Date()
+        createdAt: new Date(),
       });
 
       alert("Signup successful! Redirecting to Login Screen...");
       window.location.href = "index.html";
-      
-        } catch (error) {
+    } catch (error) {
       signupbtn.disabled = false;
       signupbtn.textContent = "Sign Up";
 
@@ -185,10 +229,12 @@ signupbtn.addEventListener(
         errorMessage = "Please enter a valid email address.";
       } else if (error.code === "auth/weak-password") {
         errorMessage = "Password should be at least 6 characters.";
+      } else if (error.code === "auth/network-request-failed") {
+        errorMessage = "Network error. Please check your connection.";
       }
 
       showErrorToast(errorMessage);
+      console.error("Signup error:", error);
     }
   })
 );
-

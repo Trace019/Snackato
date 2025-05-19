@@ -38,12 +38,33 @@ loginbtn.addEventListener("click", function (event) {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-    // Signed in successfully
-    const user = userCredential.user;
-    alert("Logged in Successfully!");
-    window.location.href = "homepage.html";
-  });
+  // Show loading state
+  loginbtn.disabled = true;
+  loginbtn.innerHTML = '<span class="spinner"></span>  Logging in...';
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in successfully
+      const user = userCredential.user;
+      window.location.href = "homepage.html";
+    })
+    .catch((error) => {
+      loginbtn.disabled = false;
+      loginbtn.textContent = "Login";
+
+      let errorMessage = "Login failed. Please try again.";
+      if (error.code === "auth/invalid-credential") {
+        errorMessage = "Invalid Email/Password.";
+      } else if (error.code === "auth/invalid-email") {
+        errorMessage = "Please enter a valid email address (e.g @gmail.com).";
+      } else if (error.code === "auth/user-not-found") {
+        errorMessage = "No account has been found with this email.";
+      } else if (error.code === "auth/wrong-password") {
+        errorMessage = "Incorrect Password.";
+      }
+
+      showErrorToast(errorMessage);
+    });
 });
 
 // Show Password functionality
@@ -61,3 +82,25 @@ function togglePassword() {
 }
 
 showhidePass.addEventListener("click", togglePassword);
+
+// Error Messages:
+
+function showErrorToast(message) {
+  const toast = document.createElement('div');
+  toast.className = 'error-toast';
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.classList.add('show');
+  }, 10);
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => {
+      document.body.removeChild(toast);
+    }, 300);
+  }, 3000);
+}
+
+

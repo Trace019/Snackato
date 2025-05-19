@@ -47,14 +47,19 @@ function populateInvoice(orderData) {
 
   // Customer Info
   document.getElementById("billedToName").textContent = orderData.customerName;
+
   document.getElementById("billedToAddress").textContent =
     orderData.customerAddress;
+
   document.getElementById("billedToPhone").textContent =
-    orderData.customerPhone;
+    orderData.customerPhone || "N/A";
+
   document.getElementById("billedToEmail").textContent =
-    orderData.customerEmail || "N/A"; // Assuming email is optional
+    orderData.customerEmail || "No Email Specified"; // Assuming email is optional
+    
   document.getElementById("billedToDate").textContent = new Date(
     orderData.date
+    
   ).toLocaleDateString();
 
   // Cart items
@@ -75,7 +80,7 @@ function populateInvoice(orderData) {
         `;
   });
 
-  // Add subtotal
+  // Add subtotal/total price
   const subtotalRow = tableBody.insertRow();
   subtotalRow.innerHTML = `
         <th colspan="3">Subtotal:</th>
@@ -90,7 +95,7 @@ function populateInvoice(orderData) {
         <th>₱${tax.toFixed(2)}</th>
     `;
 
-  // Add grand total
+  // Add grand total price
   const grandTotalRow = tableBody.insertRow();
   const grandTotal = subtotal + tax;
   grandTotalRow.innerHTML = `
@@ -99,7 +104,7 @@ function populateInvoice(orderData) {
     `;
 }
 
-// Display error message
+// Error Message
 function displayError(message) {
   document.querySelector(".invoice-container").innerHTML = `
         <div class="error-message">

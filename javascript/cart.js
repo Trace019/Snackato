@@ -4,7 +4,7 @@ let body = document.querySelector("#toggle-open");
 let listProductHTML = document.querySelector(".productList");
 let listCartHTML = document.querySelector(".cartList");
 let iconCartSpan = document.querySelector(".cart-icon span");
-let totalPriceElement = document.getElementById("totalPrice");
+let totalPriceElement = document.getElementById("cartPrice");
 
 let productList = [];
 let carts = [];

@@ -25,6 +25,8 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+
+
 // Authentication state observer
 onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -72,3 +74,22 @@ onAuthStateChanged(auth, async (user) => {
         }
     }
 });
+
+const logoutButton = document.getElementById('logout');
+if (logoutButton) {
+  logoutButton.addEventListener('click', () => {
+    // Clear Local Storage Items
+    localStorage.removeItem('lastOrderInfo');
+    localStorage.removeItem('cart');
+    
+    // Signed Out From Firebase
+    auth.signOut()
+      .then(() => {
+        console.log('User Has Now Signed Out.');
+        window.location.href = 'index.html';
+      })
+      .catch((error) => {
+        console.error("Failed to Log Out...");
+      });
+  });
+}
