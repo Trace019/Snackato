@@ -302,7 +302,7 @@ main { /* ! For Background*/
 
 .error-toast {
     position: fixed;
-    bottom: 20px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
     background: #ff3333;
@@ -313,9 +313,20 @@ main { /* ! For Background*/
     z-index: 1000;
     opacity: 0;
     transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 90%;
+    word-break: break-word;
 }
+
 .error-toast.show {
     opacity: 1;
+}
+
+.toast-icon {
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 .spinner {
@@ -326,6 +337,7 @@ main { /* ! For Background*/
     border-radius: 50%;
     border-top-color: white;
     animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
 }
 
 @keyframes spin {
