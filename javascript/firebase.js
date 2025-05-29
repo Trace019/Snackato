@@ -19,6 +19,7 @@ const db = getFirestore(app);
 
 export { auth, db }; 
 
+
 // Select the button
 const signupbtn = document.getElementById('signupbtn');
 

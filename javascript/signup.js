@@ -137,6 +137,8 @@ function debounce(func, timeout = 300) {
 }
 
 // Signup Functionality
+const signupbtn = document.getElementById("signupbtn");
+
 signupbtn.addEventListener(
   "click",
   debounce(async (event) => {
@@ -155,7 +157,7 @@ signupbtn.addEventListener(
       box.classList.remove("error");
     });
 
-    // Validation for dummies
+    // Validation
     let isValid = true;
 
     if (!username) {
@@ -200,6 +202,7 @@ signupbtn.addEventListener(
     signupbtn.innerHTML = '<span class="spinner"></span> Creating account...';
 
     try {
+      console.log("Attempting to create user...")
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -215,6 +218,7 @@ signupbtn.addEventListener(
         password: password,
         createdAt: new Date(),
       });
+      console.log("Saved in Firestore uccessful...")
 
       alert("Signup successful! Redirecting to Login Screen...");
       window.location.href = "index.html";
